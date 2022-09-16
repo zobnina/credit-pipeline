@@ -34,7 +34,13 @@
 ## Testing
 
 - [ ] postman
-- [ ] meter
+	- [X] ms-conveyor
+	- [ ] ms-deal
+	- [ ] ms-application
+- [ ] jmeter
+	- [X] ms-conveyor
+	- [ ] ms-deal
+	- [ ] ms-application
 
 ## DevOps
 

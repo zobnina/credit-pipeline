@@ -15,7 +15,6 @@
 
 ## ToDo
 
-- [ ] jmeter
 - [ ] dockerfile
 - [ ] docker compose
 - [ ] deployment config
@@ -49,7 +48,6 @@
 
 ### v0.0.3
 
-- postman collection with tests
 - masking
 
 ### v0.0.2
