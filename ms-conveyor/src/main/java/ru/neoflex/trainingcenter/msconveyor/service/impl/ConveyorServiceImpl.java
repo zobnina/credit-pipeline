@@ -1,7 +1,9 @@
 package ru.neoflex.trainingcenter.msconveyor.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ru.neoflex.trainingcenter.liblog.DebugLog;
 import ru.neoflex.trainingcenter.msconveyor.config.ConveyorConfigParam;
 import ru.neoflex.trainingcenter.msconveyor.dto.CreditDto;
 import ru.neoflex.trainingcenter.msconveyor.dto.LoanApplicationRequestDto;
@@ -44,6 +46,8 @@ import static ru.neoflex.trainingcenter.msconveyor.config.Constant.RATE_SCALE;
 import static ru.neoflex.trainingcenter.msconveyor.config.Constant.SCALE;
 import static ru.neoflex.trainingcenter.msconveyor.config.Constant.TOP_MANAGER_RATE_DECREASE;
 
+@Slf4j
+@DebugLog
 @Service
 @RequiredArgsConstructor
 public class ConveyorServiceImpl implements ConveyorService {
@@ -66,12 +70,18 @@ public class ConveyorServiceImpl implements ConveyorService {
 
         final BigDecimal rate = calcRate(scoringDataDto.getAmount(), scoringDataDto.getTerm(),
                 scoringDataDto.getIsInsuranceEnabled(), scoringDataDto.getIsSalaryClient());
+        log.debug("calculation(): rate = {}", rate);
         final BigDecimal scoring = scoring(rate, scoringDataDto);
-        final BigDecimal monthlyPayment = calcMonthPayment(scoringDataDto.getAmount(), scoring, scoringDataDto.getTerm());
+        log.debug("calculation(): scoring = {}", scoring);
+        final BigDecimal monthlyPayment = calcMonthPayment(
+                scoringDataDto.getAmount(), scoring, scoringDataDto.getTerm());
+        log.debug("calculation(): monthlyPayment = {}", monthlyPayment);
         final BigDecimal psk = calcPsk(scoringDataDto.getAmount(), monthlyPayment, scoringDataDto.getTerm(),
                 scoringDataDto.getIsInsuranceEnabled(), scoringDataDto.getIsSalaryClient());
+        log.debug("calculation(): psk = {}", psk);
         final List<PaymentScheduleElement> paymentSchedule = createPaymentSchedule(scoringDataDto.getAmount(),
                 scoringDataDto.getTerm(), scoring, monthlyPayment);
+        log.debug("calculation(): paymentSchedule = {}", paymentSchedule);
 
         return CreditDto.builder()
                 .rate(scoring)
@@ -237,10 +247,13 @@ public class ConveyorServiceImpl implements ConveyorService {
 
         final BigDecimal rate = calcRate(loanApplicationRequestDto.getAmount(),
                 loanApplicationRequestDto.getTerm(), isInsuranceEnabled, isSalaryClient);
+        log.debug("createLoanOfferDto(): rate = {}", rate);
         final BigDecimal monthlyPayment = calcMonthPayment(loanApplicationRequestDto.getAmount(),
                 rate, loanApplicationRequestDto.getTerm());
+        log.debug("createLoanOfferDto(): monthlyPayment = {}", monthlyPayment);
         final BigDecimal totalAmount = calcPsk(loanApplicationRequestDto.getAmount(),
                 monthlyPayment, loanApplicationRequestDto.getTerm(), isInsuranceEnabled, isSalaryClient);
+        log.debug("createLoanOfferDto(): totalAmount = {}", totalAmount);
 
         return LoanOfferDto.builder()
                 .isInsuranceEnabled(isInsuranceEnabled)
