@@ -29,7 +29,7 @@
 
 ## Logging
 
-- [ ] log-lib
+- [X] log-lib
 
 ## Testing
 
