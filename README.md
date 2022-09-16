@@ -30,7 +30,6 @@
 ## Logging
 
 - [ ] log-lib
-- [ ] mask-lib
 
 ## Testing
 

@@ -11,12 +11,10 @@
 - Maven
 - Lombok
 - Swagger
-- Postman ?
 - JUnit5, Faker
 
 ## ToDo
 
-- [ ] masking
 - [ ] postman collection
 - [ ] jmeter
 - [ ] dockerfile
@@ -49,6 +47,10 @@
 | conveyor.insurance.salaryClientPercent   | CONVEYOR_INSURANCE_SALARY_CLIENT_PERCENT  | percent from loan amount to calculate insurance cost for salary-client | 0       |
 
 ## History
+
+### v0.0.3
+
+- masking
 
 ### v0.0.2
 
