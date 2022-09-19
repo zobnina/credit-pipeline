@@ -10,7 +10,7 @@
     </parent>
     <groupId>ru.neoflex.trainingcenter</groupId>
     <artifactId>ms-conveyor</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <name>ms-conveyor</name>
     <description>ms-conveyor</description>
     <properties>
@@ -72,6 +72,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

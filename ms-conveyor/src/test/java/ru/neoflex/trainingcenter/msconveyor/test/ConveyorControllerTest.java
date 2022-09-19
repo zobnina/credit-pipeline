@@ -8,11 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import ru.neoflex.trainingcenter.msconveyor.dto.CreditDto;
 import ru.neoflex.trainingcenter.msconveyor.dto.EmploymentDto;
 import ru.neoflex.trainingcenter.msconveyor.dto.LoanApplicationRequestDto;
 import ru.neoflex.trainingcenter.msconveyor.dto.ScoringDataDto;
@@ -21,19 +20,15 @@ import ru.neoflex.trainingcenter.msconveyor.dto.enums.Gender;
 import ru.neoflex.trainingcenter.msconveyor.dto.enums.MaritalStatus;
 import ru.neoflex.trainingcenter.msconveyor.dto.enums.Position;
 
-
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.time.ZoneId;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@ActiveProfiles(value = "test")
 @SpringBootTest
 @AutoConfigureMockMvc
 class ConveyorControllerTest {

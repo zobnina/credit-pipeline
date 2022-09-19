@@ -45,5 +45,9 @@
 ## DevOps
 
 - [ ] docker
+	- [X] ms-conveyor
+	- [ ] ms-deal
+	- [ ] ms-application
+- [ ] docker-compose
 - [ ] kubernetes
 - [ ] helm

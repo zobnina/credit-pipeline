@@ -1,5 +1,7 @@
 # ms-conveyor
 
+Run service through docker: .\command.cmd
+
 ## Api
 
 - `POST`<tt>/conveyor/offers</tt> - calculation of possible loan terms
@@ -15,11 +17,13 @@
 
 ## ToDo
 
-- [ ] dockerfile
 - [ ] docker compose
 - [ ] deployment config
 - [ ] secret
 - [ ] helm
+- [ ] prometheus
+- [ ] grafana
+- [ ] zipkin
 
 ## Config
 
@@ -45,6 +49,10 @@
 | conveyor.insurance.salaryClientPercent   | CONVEYOR_INSURANCE_SALARY_CLIENT_PERCENT  | percent from loan amount to calculate insurance cost for salary-client | 0       |
 
 ## History
+
+### v0.0.4
+
+- refactor and bugfix in logging + docker file
 
 ### v0.0.3
 

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import ru.neoflex.trainingcenter.msconveyor.dto.CreditDto;
 import ru.neoflex.trainingcenter.msconveyor.dto.EmploymentDto;
 import ru.neoflex.trainingcenter.msconveyor.dto.LoanApplicationRequestDto;
@@ -29,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+@ActiveProfiles("test")
 @SpringBootTest
 class ConveyorServiceTest {
 
