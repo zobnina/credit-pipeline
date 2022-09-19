@@ -14,8 +14,8 @@
 
 ### ms-conveyor
 
-- `POST`<tt>/conveyor/offers</tt> 
-- `POST`<tt>/conveyor/calculation</tt> 
+- `POST`<tt>/conveyor/offers</tt>
+- `POST`<tt>/conveyor/calculation</tt>
 
 ## Tech Stack
 
@@ -27,27 +27,30 @@
 - Swagger
 - JUnit5, Faker
 
-## Logging
+## Additional lib
 
 - [X] log-lib
 
 ## Testing
 
 - [ ] postman
-	- [X] ms-conveyor
-	- [ ] ms-deal
-	- [ ] ms-application
+    - [X] ms-conveyor
+    - [ ] ms-deal
+    - [ ] ms-application
 - [ ] jmeter
-	- [X] ms-conveyor
-	- [ ] ms-deal
-	- [ ] ms-application
+    - [X] ms-conveyor
+    - [ ] ms-deal
+    - [ ] ms-application
 
 ## DevOps
 
 - [ ] docker
-	- [X] ms-conveyor
-	- [ ] ms-deal
-	- [ ] ms-application
+    - [X] ms-conveyor
+    - [ ] ms-deal
+    - [ ] ms-application
 - [ ] docker-compose
+    - [X] ms-conveyor
+    - [ ] ms-deal
+    - [ ] ms-application
 - [ ] kubernetes
 - [ ] helm

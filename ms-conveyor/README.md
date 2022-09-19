@@ -1,6 +1,6 @@
 # ms-conveyor
 
-Run service through docker: .\command.cmd
+Run service: docker-compose up
 
 ## Api
 
@@ -17,13 +17,14 @@ Run service through docker: .\command.cmd
 
 ## ToDo
 
-- [ ] docker compose
 - [ ] deployment config
 - [ ] secret
 - [ ] helm
+- [ ] sonarqube
 - [ ] prometheus
 - [ ] grafana
 - [ ] zipkin
+- [ ] audit ?
 
 ## Config
 
@@ -52,6 +53,7 @@ Run service through docker: .\command.cmd
 
 ### v0.0.4
 
+- docker-compose
 - refactor and bugfix in logging + docker file
 
 ### v0.0.3
