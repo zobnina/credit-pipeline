@@ -9,8 +9,10 @@ docker-compose up
 Or:
 
 <code>
-kubectl create configmap ms-conveyor-env --from-file=...yaml </br>
-kubectl apply -f ...yaml </br>
+kubectl create configmap ms-conveyor-env --from-file=...yaml
+<br/>
+kubectl apply -f ...yaml 
+<br/>
 kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-conveyor-service
 </code>
 
@@ -37,6 +39,7 @@ kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-c
 - [ ] grafana
 - [ ] zipkin
 - [ ] audit ?
+- [ ] auth ?
 
 ## Config
 
