@@ -1,6 +1,18 @@
 # ms-conveyor
 
-Run service: docker-compose up
+Run service: 
+
+<code>
+docker-compose up
+</code>
+
+Or:
+
+<code>
+kubectl create configmap ms-conveyor-env --from-file=...yaml </br>
+kubectl apply -f ...yaml </br>
+kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-conveyor-service
+</code>
 
 ## Api
 
@@ -17,8 +29,6 @@ Run service: docker-compose up
 
 ## ToDo
 
-- [ ] deployment config
-- [ ] secret
 - [ ] helm
 - [ ] sonarqube
 - [ ] prometheus
@@ -53,6 +63,7 @@ Run service: docker-compose up
 
 ### v0.0.4
 
+- kubernetes deployment config
 - docker-compose
 - refactor and bugfix in logging + docker file
 

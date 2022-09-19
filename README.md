@@ -53,4 +53,7 @@
     - [ ] ms-deal
     - [ ] ms-application
 - [ ] kubernetes
+    - [X] ms-conveyor
+    - [ ] ms-deal
+    - [ ] ms-application
 - [ ] helm
