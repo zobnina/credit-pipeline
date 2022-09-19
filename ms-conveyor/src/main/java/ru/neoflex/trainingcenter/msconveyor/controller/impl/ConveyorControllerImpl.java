@@ -2,6 +2,7 @@ package ru.neoflex.trainingcenter.msconveyor.controller.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import ru.neoflex.trainingcenter.liblog.InfoLog;
 import ru.neoflex.trainingcenter.msconveyor.controller.ConveyorController;
@@ -14,6 +15,7 @@ import ru.neoflex.trainingcenter.msconveyor.service.ConveyorService;
 import java.util.List;
 
 @InfoLog
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 public class ConveyorControllerImpl implements ConveyorController {

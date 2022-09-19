@@ -10,7 +10,7 @@
     </parent>
     <groupId>ru.neoflex.trainingcenter</groupId>
     <artifactId>ms-conveyor</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <name>ms-conveyor</name>
     <description>ms-conveyor</description>
     <properties>

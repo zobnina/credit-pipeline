@@ -1,6 +1,6 @@
 # ms-conveyor
 
-Run service: 
+Run service:
 
 <code>
 docker-compose up
@@ -26,6 +26,8 @@ kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-c
 - Lombok
 - Swagger
 - JUnit5, Faker
+- Postman, Jmeter
+- Docker, Kubernetes
 
 ## ToDo
 
@@ -63,6 +65,7 @@ kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-c
 
 ### v0.0.4
 
+- bugfix: cors
 - kubernetes deployment config
 - docker-compose
 - refactor and bugfix in logging + docker file
