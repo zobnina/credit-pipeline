@@ -1,0 +1,496 @@
+{
+	"info": {
+		"_postman_id": "9a546869-1a47-4a79-a736-b8bce4121e53",
+		"name": "credit-pipeline",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12262492"
+	},
+	"item": [
+		{
+			"name": "conveyor",
+			"item": [
+				{
+					"name": "offers",
+					"item": [
+						{
+							"name": "200_success",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.variables.set('amount', 10000)\r",
+											"pm.variables.set('term', 6)\r",
+											"pm.variables.set('birthdate', '1997-10-18')\r",
+											"pm.variables.set('passportSeries', '1234')\r",
+											"pm.variables.set('passportNumber', '567890')"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Offers #1. StatusCode\", function () {\r",
+											"    pm.response.to.be.ok;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Offers #1. Length\", function () {\r",
+											"    pm.expect(data.length).to.equal(4);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Offers #1. Fields\", function () {\r",
+											"    data.forEach(function(row){\r",
+											"        pm.expect(row.hasOwnProperty(\"requestAmount\")).to.be.true\r",
+											"        pm.expect(row.hasOwnProperty(\"totalAmount\")).to.be.true\r",
+											"        pm.expect(row.hasOwnProperty(\"term\")).to.be.true\r",
+											"        pm.expect(row.hasOwnProperty(\"monthlyPayment\")).to.be.true\r",
+											"        pm.expect(row.hasOwnProperty(\"rate\")).to.be.true\r",
+											"        pm.expect(row.hasOwnProperty(\"isInsuranceEnabled\")).to.be.true\r",
+											"        pm.expect(row.hasOwnProperty(\"isSalaryClient\")).to.be.true\r",
+											"\r",
+											"    })\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": {{amount}},\r\n    \"term\": {{term}},\r\n    \"firstName\": \"{{$randomFirstName}}\",\r\n    \"lastName\": \"{{$randomLastName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"birthdate\": \"{{birthdate}}\",\r\n    \"passportSeries\": \"{{passportSeries}}\",\r\n    \"passportNumber\": \"{{passportNumber}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{conveyorHost}}/conveyor/offers",
+									"host": [
+										"{{conveyorHost}}"
+									],
+									"path": [
+										"conveyor",
+										"offers"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200_success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"amount\": {{amount}},\r\n    \"term\": {{term}},\r\n    \"firstName\": \"{{$randomFirstName}}\",\r\n    \"lastName\": \"{{$randomLastName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"birthdate\": \"{{birthdate}}\",\r\n    \"passportSeries\": \"{{passportSeries}}\",\r\n    \"passportNumber\": \"{{passportNumber}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{conveyorHost}}/conveyor/offers",
+											"host": [
+												"{{conveyorHost}}"
+											],
+											"path": [
+												"conveyor",
+												"offers"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 29 May 2022 17:52:31 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"applicationId\": 508005512463856539,\n        \"requestAmount\": 10000,\n        \"totalAmount\": 10340.4,\n        \"term\": 6,\n        \"monthlyPayment\": 1723.4,\n        \"rate\": 11.56716,\n        \"isInsuranceEnabled\": true,\n        \"isSalaryClient\": true\n    },\n    {\n        \"applicationId\": 3147992885992589201,\n        \"requestAmount\": 10000,\n        \"totalAmount\": 10378.8,\n        \"term\": 6,\n        \"monthlyPayment\": 1729.8,\n        \"rate\": 12.8524,\n        \"isInsuranceEnabled\": false,\n        \"isSalaryClient\": true\n    },\n    {\n        \"applicationId\": 3533481100879348888,\n        \"requestAmount\": 10000,\n        \"totalAmount\": 10537.2,\n        \"term\": 6,\n        \"monthlyPayment\": 1731.2,\n        \"rate\": 13.1445,\n        \"isInsuranceEnabled\": true,\n        \"isSalaryClient\": false\n    },\n    {\n        \"applicationId\": 5249938264998481998,\n        \"requestAmount\": 10000,\n        \"totalAmount\": 10431,\n        \"term\": 6,\n        \"monthlyPayment\": 1738.5,\n        \"rate\": 14.605,\n        \"isInsuranceEnabled\": false,\n        \"isSalaryClient\": false\n    }\n]"
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.variables.set('amount', 10000)",
+									"pm.variables.set('term', 6)",
+									"pm.variables.set('birthdate', '1997-10-18')",
+									"pm.variables.set('passportSeries', '1234')",
+									"pm.variables.set('passportNumber', '567890')"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "calculation",
+					"item": [
+						{
+							"name": "200_success",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var data = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Calculation #1. StatusCode\", function () {\r",
+											"    pm.response.to.be.ok;\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Calculation #1. Fields\", function () {\r",
+											"\r",
+											"    pm.expect(data.amount).equal(pm.variables.get('amount'))\r",
+											"    pm.expect(data.term).equal(pm.variables.get('term'))\r",
+											"    pm.expect(data.hasOwnProperty(\"monthlyPayment\")).to.be.true\r",
+											"    pm.expect(data.hasOwnProperty(\"rate\")).to.be.true\r",
+											"    pm.expect(data.hasOwnProperty(\"psk\")).to.be.true\r",
+											"    pm.expect(data.hasOwnProperty(\"isInsuranceEnabled\")).to.be.true\r",
+											"    pm.expect(data.hasOwnProperty(\"isSalaryClient\")).to.be.true\r",
+											"    pm.expect(data.paymentSchedule.length).to.equal(pm.variables.get('term') + 1);\r",
+											"\r",
+											"    data.paymentSchedule.forEach(function(row){\r",
+											"        pm.expect(row.hasOwnProperty(\"number\")).to.be.true\r",
+											"        pm.expect(row.hasOwnProperty(\"date\")).to.be.true\r",
+											"        pm.expect(row.hasOwnProperty(\"totalPayment\")).to.be.true\r",
+											"        pm.expect(row.hasOwnProperty(\"interestPayment\")).to.be.true\r",
+											"        pm.expect(row.hasOwnProperty(\"debtPayment\")).to.be.true\r",
+											"        pm.expect(row.hasOwnProperty(\"remainingDebt\")).to.be.true\r",
+											"    })\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": {{amount}},\r\n    \"term\": {{term}},\r\n    \"firstName\": \"{{$randomFirstName}}\",\r\n    \"lastName\": \"{{$randomLastName}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"birthdate\": \"{{birthdate}}\",\r\n    \"passportSeries\": \"{{passportSeries}}\",\r\n    \"passportNumber\": \"{{passportNumber}}\",\r\n    \"maritalStatus\": \"{{maritalStatus}}\",\r\n    \"dependentAmount\": {{dependentAmount}},\r\n    \"employment\": {\r\n        \"employmentStatus\": \"{{employmentStatus}}\",\r\n        \"salary\": {{salary}},\r\n        \"position\": \"{{position}}\",\r\n        \"workExperienceTotal\": {{workExperienceTotal}},\r\n        \"workExperienceCurrent\": {{workExperienceCurrent}}\r\n    },\r\n    \"isInsuranceEnabled\": {{$randomBoolean}},\r\n    \"isSalaryClient\": {{$randomBoolean}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{conveyorHost}}/conveyor/calculation",
+									"host": [
+										"{{conveyorHost}}"
+									],
+									"path": [
+										"conveyor",
+										"calculation"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200_success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"amount\": {{amount}},\r\n    \"term\": {{term}},\r\n    \"firstName\": \"{{$randomFirstName}}\",\r\n    \"lastName\": \"{{$randomLastName}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"birthdate\": \"{{birthdate}}\",\r\n    \"passportSeries\": \"{{passportSeries}}\",\r\n    \"passportNumber\": \"{{passportNumber}}\",\r\n    \"maritalStatus\": \"{{maritalStatus}}\",\r\n    \"dependentAmount\": {{dependentAmount}},\r\n    \"employment\": {\r\n        \"employmentStatus\": \"{{employmentStatus}}\",\r\n        \"salary\": {{salary}},\r\n        \"position\": \"{{position}}\",\r\n        \"workExperienceTotal\": {{workExperienceTotal}},\r\n        \"workExperienceCurrent\": {{workExperienceCurrent}}\r\n    },\r\n    \"isInsuranceEnabled\": {{$randomBoolean}},\r\n    \"isSalaryClient\": {{$randomBoolean}}\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{conveyorHost}}/conveyor/calculation",
+											"host": [
+												"{{conveyorHost}}"
+											],
+											"path": [
+												"conveyor",
+												"calculation"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 29 May 2022 18:24:05 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"amount\": 10000,\n    \"term\": 6,\n    \"monthlyPayment\": 1716.4,\n    \"rate\": 10.15,\n    \"psk\": 10448.4,\n    \"isInsuranceEnabled\": true,\n    \"isSalaryClient\": false,\n    \"paymentSchedule\": [\n        {\n            \"number\": 0,\n            \"date\": \"2022-05-29\",\n            \"totalPayment\": 0,\n            \"interestPayment\": 0,\n            \"debtPayment\": 0,\n            \"remainingDebt\": 10000\n        },\n        {\n            \"number\": 1,\n            \"date\": \"2022-06-29\",\n            \"totalPayment\": 1716.4,\n            \"interestPayment\": 84.6,\n            \"debtPayment\": 1631.8,\n            \"remainingDebt\": 8368.2\n        },\n        {\n            \"number\": 2,\n            \"date\": \"2022-07-29\",\n            \"totalPayment\": 1716.4,\n            \"interestPayment\": 70.79498,\n            \"debtPayment\": 1645.60502,\n            \"remainingDebt\": 6722.59498\n        },\n        {\n            \"number\": 3,\n            \"date\": \"2022-08-29\",\n            \"totalPayment\": 1716.4,\n            \"interestPayment\": 56.87316,\n            \"debtPayment\": 1659.52684,\n            \"remainingDebt\": 5063.06814\n        },\n        {\n            \"number\": 4,\n            \"date\": \"2022-09-29\",\n            \"totalPayment\": 1716.4,\n            \"interestPayment\": 42.83356,\n            \"debtPayment\": 1673.56644,\n            \"remainingDebt\": 3389.5017\n        },\n        {\n            \"number\": 5,\n            \"date\": \"2022-10-29\",\n            \"totalPayment\": 1716.4,\n            \"interestPayment\": 28.67519,\n            \"debtPayment\": 1687.72481,\n            \"remainingDebt\": 1701.77689\n        },\n        {\n            \"number\": 6,\n            \"date\": \"2022-11-29\",\n            \"totalPayment\": 1716.17393,\n            \"interestPayment\": 14.39704,\n            \"debtPayment\": 1701.77689,\n            \"remainingDebt\": 0\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "422_unprocessable_entity",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.variables.set('employmentStatus', 'UNEMPLOYED')"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Calculation #2. StatusCode\", function () {\r",
+											"    pm.expect(pm.response.code).to.equal(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": {{amount}},\r\n    \"term\": {{term}},\r\n    \"firstName\": \"{{$randomFirstName}}\",\r\n    \"lastName\": \"{{$randomLastName}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"birthdate\": \"{{birthdate}}\",\r\n    \"passportSeries\": \"{{passportSeries}}\",\r\n    \"passportNumber\": \"{{passportNumber}}\",\r\n    \"maritalStatus\": \"{{maritalStatus}}\",\r\n    \"dependentAmount\": {{dependentAmount}},\r\n    \"employment\": {\r\n        \"employmentStatus\": \"{{employmentStatus}}\",\r\n        \"salary\": {{salary}},\r\n        \"position\": \"{{position}}\",\r\n        \"workExperienceTotal\": {{workExperienceTotal}},\r\n        \"workExperienceCurrent\": {{workExperienceCurrent}}\r\n    },\r\n    \"isInsuranceEnabled\": {{$randomBoolean}},\r\n    \"isSalaryClient\": {{$randomBoolean}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{conveyorHost}}/conveyor/calculation",
+									"host": [
+										"{{conveyorHost}}"
+									],
+									"path": [
+										"conveyor",
+										"calculation"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400_bad_request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"amount\": {{amount}},\r\n    \"term\": {{term}},\r\n    \"firstName\": \"{{$randomFirstName}}\",\r\n    \"lastName\": \"{{$randomLastName}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"birthdate\": \"{{birthdate}}\",\r\n    \"passportSeries\": \"{{passportSeries}}\",\r\n    \"passportNumber\": \"{{passportNumber}}\",\r\n    \"maritalStatus\": \"{{maritalStatus}}\",\r\n    \"dependentAmount\": {{dependentAmount}},\r\n    \"employment\": {\r\n        \"employmentStatus\": \"{{employmentStatus}}\",\r\n        \"salary\": {{salary}},\r\n        \"position\": \"{{position}}\",\r\n        \"workExperienceTotal\": {{workExperienceTotal}},\r\n        \"workExperienceCurrent\": {{workExperienceCurrent}}\r\n    },\r\n    \"isInsuranceEnabled\": {{$randomBoolean}},\r\n    \"isSalaryClient\": {{$randomBoolean}}\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{conveyorHost}}/conveyor/calculation",
+											"host": [
+												"{{conveyorHost}}"
+											],
+											"path": [
+												"conveyor",
+												"calculation"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 29 May 2022 18:26:26 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2022-05-29T21:26:26\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"path\": \"/conveyor/calculation\",\n    \"stackTrace\": \"ru.azobnina.conveyor.exception.ScoringException: Unemployed status\\r\\n\\tat ru.azobnina.conveyor.service.CalculationService.scoringEmploymentStatus(CalculationService.java:215)\\r\\n\\tat ru.azobnina.conveyor.service.CalculationService.scoring(CalculationService.java:144)\\r\\n\\tat ru.azobnina.conveyor.service.CalculationService.calculation(CalculationService.java:37)\\r\\n\\tat ru.azobnina.conveyor.service.CalculationService$$FastClassBySpringCGLIB$$1a1ea0ff.invoke(<generated>)\\r\\n\\tat org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)\\r\\n\\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)\\r\\n\\tat org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor.invoke(AfterReturningAdviceInterceptor.java:57)\\r\\n\\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)\\r\\n\\tat org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)\\r\\n\\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)\\r\\n\\tat org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)\\r\\n\\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)\\r\\n\\tat ru.azobnina.conveyor.service.CalculationService$$EnhancerBySpringCGLIB$$e18701c2.calculation(<generated>)\\r\\n\\tat ru.azobnina.conveyor.controller.ConveyorController.calculation(ConveyorController.java:40)\\r\\n\\tat ru.azobnina.conveyor.controller.ConveyorController$$FastClassBySpringCGLIB$$55458df.invoke(<generated>)\\r\\n\\tat org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)\\r\\n\\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)\\r\\n\\tat org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:123)\\r\\n\\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)\\r\\n\\tat org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor.invoke(AfterReturningAdviceInterceptor.java:57)\\r\\n\\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)\\r\\n\\tat org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)\\r\\n\\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)\\r\\n\\tat org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)\\r\\n\\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)\\r\\n\\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)\\r\\n\\tat ru.azobnina.conveyor.controller.ConveyorController$$EnhancerBySpringCGLIB$$230a1562.calculation(<generated>)\\r\\n\\tat jdk.internal.reflect.GeneratedMethodAccessor100.invoke(Unknown Source)\\r\\n\\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\\r\\n\\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\\r\\n\\tat org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)\\r\\n\\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)\\r\\n\\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)\\r\\n\\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)\\r\\n\\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)\\r\\n\\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\\r\\n\\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)\\r\\n\\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)\\r\\n\\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)\\r\\n\\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)\\r\\n\\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:681)\\r\\n\\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)\\r\\n\\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:764)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)\\r\\n\\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)\\r\\n\\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)\\r\\n\\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)\\r\\n\\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)\\r\\n\\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)\\r\\n\\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)\\r\\n\\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)\\r\\n\\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)\\r\\n\\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)\\r\\n\\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)\\r\\n\\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)\\r\\n\\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)\\r\\n\\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)\\r\\n\\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)\\r\\n\\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)\\r\\n\\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)\\r\\n\\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)\\r\\n\\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)\\r\\n\\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)\\r\\n\\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\\r\\n\\tat org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)\\r\\n\\tat org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)\\r\\n\\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)\\r\\n\\tat java.base/java.lang.Thread.run(Thread.java:829)\\r\\n\"\n}"
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.variables.set('amount', 10000);",
+									"pm.variables.set('term', 6);",
+									"pm.variables.set('gender','FEMALE')",
+									"pm.variables.set('birthdate', '1997-10-18')",
+									"pm.variables.set('passportSeries', '1234')",
+									"pm.variables.set('passportNumber', '567890')",
+									"pm.variables.set('maritalStatus', 'MARRIED')",
+									"pm.variables.set('dependentAmount', 1)",
+									"pm.variables.set('employmentStatus', 'EMPLOYED')",
+									"pm.variables.set('salary', 75000)",
+									"pm.variables.set('position', 'WORKER')",
+									"pm.variables.set('workExperienceTotal', 36)",
+									"pm.variables.set('workExperienceCurrent', 6)"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.variables.replaceIn('{{$randomFirstName}}')",
+							"pm.variables.replaceIn('{{$randomLastName}}')",
+							"pm.variables.replaceIn('{{$randomEmail}}')",
+							"pm.variables.replaceIn('{{$randomBoolean}}');"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.variables.replaceIn('{{$randomFirstName}}')",
+					"pm.variables.replaceIn('{{$randomLastName}}')",
+					"pm.variables.replaceIn('{{$randomEmail}}')",
+					"pm.variables.replaceIn('{{$randomBoolean}}');"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "conveyorHost",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "dealHost",
+			"value": "http://localhost:8081",
+			"type": "string"
+		},
+		{
+			"key": "applicationHost",
+			"value": "http://localhost:8082",
+			"type": "string"
+		}
+	]
+}

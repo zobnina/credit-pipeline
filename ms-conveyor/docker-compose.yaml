@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  ms-conveyor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ms-conveyor
+    container_name: ms-conveyor
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    env_file:
+      - .env

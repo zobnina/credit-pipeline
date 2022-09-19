@@ -1,0 +1,149 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    io.kompose.service: ms-conveyor
+  name: ms-conveyor-env
+  namespace: default
+data:
+  APP_NAME: "ms-conveyor.jar"
+  CONVEYOR_AMOUNT_BIG: "2500000"
+  CONVEYOR_AMOUNT_MIDDLE: "500000"
+  CONVEYOR_INSURANCE_PERCENT: "3"
+  CONVEYOR_INSURANCE_SALARY_CLIENT_PERCENT: "0"
+  CONVEYOR_RATE_AMOUNT_BIG: "5"
+  CONVEYOR_RATE_AMOUNT_MIDDLE: "16"
+  CONVEYOR_RATE_AMOUNT_SMALL: "27"
+  CONVEYOR_RATE_BASE: "10"
+  CONVEYOR_RATE_INSURANCE: "10"
+  CONVEYOR_RATE_SALARY_CLIENT: "12"
+  CONVEYOR_RATE_TERM_BIG: "55"
+  CONVEYOR_RATE_TERM_MIDDLE: "35"
+  CONVEYOR_RATE_TERM_SMALL: "15"
+  CONVEYOR_TERM_BIG: "120"
+  CONVEYOR_TERM_MIDDLE: "60"
+  LOG_LEVEL: "debug"
+  SERVER_INCLUDE_STACKTRACE: "always"
+  SERVER_PORT: "8081"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: ms-conveyor
+  name: ms-conveyor-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: ms-conveyor
+  strategy: { }
+  template:
+    metadata:
+      labels:
+        io.kompose.service: ms-conveyor
+    spec:
+      containers:
+        - env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_NAME
+                  name: ms-conveyor-env
+            - name: CONVEYOR_AMOUNT_BIG
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_AMOUNT_BIG
+                  name: ms-conveyor-env
+            - name: CONVEYOR_AMOUNT_MIDDLE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_AMOUNT_MIDDLE
+                  name: ms-conveyor-env
+            - name: CONVEYOR_INSURANCE_PERCENT
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_INSURANCE_PERCENT
+                  name: ms-conveyor-env
+            - name: CONVEYOR_INSURANCE_SALARY_CLIENT_PERCENT
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_INSURANCE_SALARY_CLIENT_PERCENT
+                  name: ms-conveyor-env
+            - name: CONVEYOR_RATE_AMOUNT_BIG
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_AMOUNT_BIG
+                  name: ms-conveyor-env
+            - name: CONVEYOR_RATE_AMOUNT_MIDDLE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_AMOUNT_MIDDLE
+                  name: ms-conveyor-env
+            - name: CONVEYOR_RATE_AMOUNT_SMALL
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_AMOUNT_SMALL
+                  name: ms-conveyor-env
+            - name: CONVEYOR_RATE_BASE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_BASE
+                  name: ms-conveyor-env
+            - name: CONVEYOR_RATE_INSURANCE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_INSURANCE
+                  name: ms-conveyor-env
+            - name: CONVEYOR_RATE_SALARY_CLIENT
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_SALARY_CLIENT
+                  name: ms-conveyor-env
+            - name: CONVEYOR_RATE_TERM_BIG
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_TERM_BIG
+                  name: ms-conveyor-env
+            - name: CONVEYOR_RATE_TERM_MIDDLE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_TERM_MIDDLE
+                  name: ms-conveyor-env
+            - name: CONVEYOR_RATE_TERM_SMALL
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_TERM_SMALL
+                  name: ms-conveyor-env
+            - name: CONVEYOR_TERM_BIG
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_TERM_BIG
+                  name: ms-conveyor-env
+            - name: CONVEYOR_TERM_MIDDLE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_TERM_MIDDLE
+                  name: ms-conveyor-env
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  key: LOG_LEVEL
+                  name: ms-conveyor-env
+            - name: SERVER_INCLUDE_STACKTRACE
+              valueFrom:
+                configMapKeyRef:
+                  key: SERVER_INCLUDE_STACKTRACE
+                  name: ms-conveyor-env
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: SERVER_PORT
+                  name: ms-conveyor-env
+          image: lexana/ms-conveyor-image:0.0.4
+          name: ms-conveyor
+          ports:
+            - containerPort: 8081
+          resources: { }
+      restartPolicy: Always
