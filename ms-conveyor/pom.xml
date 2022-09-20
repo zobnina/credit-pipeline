@@ -10,7 +10,7 @@
     </parent>
     <groupId>ru.neoflex.trainingcenter</groupId>
     <artifactId>ms-conveyor</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
     <name>ms-conveyor</name>
     <description>ms-conveyor</description>
     <properties>
@@ -19,6 +19,7 @@
         <javafaker.version>1.0.2</javafaker.version>
         <log4j2.version>2.18.0</log4j2.version>
         <lib-log.version>0.0.1</lib-log.version>
+        <lib-log-web.version>0.0.1</lib-log-web.version>
     </properties>
     <dependencies>
         <dependency>
@@ -41,9 +42,14 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
-            <groupId>ru.neoflex.trainingcenter</groupId>
+            <groupId>ru.azobnina</groupId>
             <artifactId>lib-log</artifactId>
             <version>${lib-log.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.azobnina</groupId>
+            <artifactId>lib-log-web</artifactId>
+            <version>${lib-log-web.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->

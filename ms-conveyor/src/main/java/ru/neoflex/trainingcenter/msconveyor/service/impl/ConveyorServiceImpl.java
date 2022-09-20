@@ -3,7 +3,7 @@ package ru.neoflex.trainingcenter.msconveyor.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.neoflex.trainingcenter.liblog.DebugLog;
+import ru.azobnina.liblog.DebugLog;
 import ru.neoflex.trainingcenter.msconveyor.config.ConveyorConfigParam;
 import ru.neoflex.trainingcenter.msconveyor.dto.CreditDto;
 import ru.neoflex.trainingcenter.msconveyor.dto.LoanApplicationRequestDto;
