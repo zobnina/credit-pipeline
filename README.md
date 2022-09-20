@@ -26,6 +26,8 @@
 - Lombok
 - Swagger
 - JUnit5, Faker
+- Postman, Jmeter
+- Docker, Kubernetes
 
 ## Additional lib
 
