@@ -1,4 +1,4 @@
-package ru.neoflex.trainingcenter.msconveyor.config;
+package ru.neoflex.trainingcenter.msdeal.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ru.azobnina.liblog.LogAspect;
 import ru.azobnina.liblog.web.LogControllerInterceptor;
+
 
 @Configuration
 @RequiredArgsConstructor
@@ -19,6 +20,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 
         registry.addInterceptor(logControllerInterceptor)
-                .addPathPatterns("/conveyor/*");
+                .addPathPatterns("/deal/*");
     }
 }

@@ -66,6 +66,10 @@ kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-c
 
 ## History
 
+### v0.0.6
+
+- change log libraries
+
 ### v0.0.4
 
 - bugfix: cors

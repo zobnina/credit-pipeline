@@ -1,0 +1,38 @@
+[
+  {
+    "requestAmount": 10000,
+    "totalAmount": 10340.400000,
+    "term": 6,
+    "monthlyPayment": 1723.40000,
+    "rate": 11.56716,
+    "isInsuranceEnabled": true,
+    "isSalaryClient": true
+  },
+  {
+    "requestAmount": 10000,
+    "totalAmount": 10378.80000,
+    "term": 6,
+    "monthlyPayment": 1729.80000,
+    "rate": 12.85240,
+    "isInsuranceEnabled": false,
+    "isSalaryClient": true
+  },
+  {
+    "requestAmount": 10000,
+    "totalAmount": 10537.200000,
+    "term": 6,
+    "monthlyPayment": 1731.20000,
+    "rate": 13.14450,
+    "isInsuranceEnabled": true,
+    "isSalaryClient": false
+  },
+  {
+    "requestAmount": 10000,
+    "totalAmount": 10431.00000,
+    "term": 6,
+    "monthlyPayment": 1738.50000,
+    "rate": 14.60500,
+    "isInsuranceEnabled": false,
+    "isSalaryClient": false
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "applicationId": "ac3e38cf-fc43-43de-8cb6-990ef138669f",
+  "requestAmount": 10000,
+  "totalAmount": 10340.400000,
+  "term": 6,
+  "monthlyPayment": 1723.40000,
+  "rate": 11.56716,
+  "isInsuranceEnabled": true,
+  "isSalaryClient": true
+}
