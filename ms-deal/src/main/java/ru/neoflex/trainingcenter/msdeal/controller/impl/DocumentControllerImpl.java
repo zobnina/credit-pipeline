@@ -4,7 +4,7 @@ package ru.neoflex.trainingcenter.msdeal.controller.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import ru.neoflex.trainingcenter.liblog.InfoLog;
+import ru.azobnina.liblog.InfoLog;
 import ru.neoflex.trainingcenter.msdeal.controller.DocumentController;
 import ru.neoflex.trainingcenter.msdeal.service.DocumentService;
 

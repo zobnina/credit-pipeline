@@ -21,7 +21,6 @@
 
 ## ToDo
 
-- [ ] logging kafka to lib
 - [ ] postman collection, jmeter test
 - [ ] props to variables
 - [ ] docker
@@ -37,7 +36,12 @@
 
 ## History:
 
-#### v0.0.1
+### v0.0.2
+
+- move logging kafka to lib
+- change logging lib
+
+### v0.0.1
 
 - add mapstruct, refactor + swagger docs
 - unit-tests: replace h2 to test-containers, mockito to wiremock

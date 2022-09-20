@@ -3,6 +3,7 @@ package ru.neoflex.trainingcenter.msdeal.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.azobnina.liblog.DebugLog;
 import ru.neoflex.trainingcenter.msdeal.exception.EntityNotFoundException;
 import ru.neoflex.trainingcenter.msdeal.feign.ConveyorFeignClient;
 import ru.neoflex.trainingcenter.msdeal.mapper.ApplicationMapper;
@@ -25,7 +26,6 @@ import ru.neoflex.trainingcenter.msdeal.model.entity.Passport;
 import ru.neoflex.trainingcenter.msdeal.repo.ApplicationRepository;
 import ru.neoflex.trainingcenter.msdeal.service.DealService;
 import ru.neoflex.trainingcenter.msdeal.service.EmailMessageProducer;
-import ru.neoflex.trainingcenter.liblog.DebugLog;
 
 import java.util.List;
 import java.util.UUID;
