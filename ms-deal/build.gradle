@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'ru.neoflex.trainingcenter'
-version = '0.0.1'
+version = '0.0.2'
 sourceCompatibility = '17'
 
 configurations {
@@ -27,7 +27,9 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.3'
     implementation 'org.mapstruct:mapstruct:1.4.2.Final'
     implementation 'org.liquibase:liquibase-core'
-    implementation 'ru.neoflex.trainingcenter:lib-log:0.0.1'
+    implementation 'ru.azobnina:lib-log:0.0.1'
+    implementation 'ru.azobnina:lib-log-web:0.0.1'
+    implementation 'ru.azobnina:lib-log-kafka:0.0.1'
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
     implementation 'org.springframework.kafka:spring-kafka:2.8.6'
     compileOnly 'org.projectlombok:lombok'

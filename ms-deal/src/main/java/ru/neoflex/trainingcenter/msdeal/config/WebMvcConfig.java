@@ -5,8 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import ru.neoflex.trainingcenter.liblog.LogAspect;
-import ru.neoflex.trainingcenter.liblog.LogControllerInterceptor;
+import ru.azobnina.liblog.LogAspect;
+import ru.azobnina.liblog.web.LogControllerInterceptor;
+
 
 @Configuration
 @RequiredArgsConstructor

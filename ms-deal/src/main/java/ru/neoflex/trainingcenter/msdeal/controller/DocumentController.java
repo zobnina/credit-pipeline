@@ -18,9 +18,7 @@ import java.util.UUID;
 @Tag(name = "Document Controller",
         description = "Methods of Document Controller")
 @Validated
-@RequestMapping(value = "/deal/document",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/deal/document")
 public interface DocumentController {
 
     @Operation(
