@@ -22,6 +22,7 @@
 ## ToDo
 
 - [ ] logging kafka to lib
+- [ ] postman collection, jmeter test
 - [ ] props to variables
 - [ ] docker
 - [ ] docker-compose
