@@ -14,8 +14,8 @@
 
 ### ms-conveyor
 
-- `POST`<tt>/conveyor/offers</tt>
-- `POST`<tt>/conveyor/calculation</tt>
+- `POST`: <tt>/conveyor/offers</tt>
+- `POST`: <tt>/conveyor/calculation</tt>
 
 ### ms-deal
 
