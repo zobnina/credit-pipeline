@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration packages="ru.neoflex.trainingcenter.msdeal.config">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false" charset="UTF-8"
+                           pattern="%d{yyy-MM-dd HH:mm:ss.SSS} %clr{[%t]}{cyan} %clr{%-5level} %logger{36} - %msg%n"/>
+        </Console>
+        <Rewrite name="Rewrite">
+            <LogRewritePolicy/>
+            <AppenderRef ref="Console"/>
+        </Rewrite>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Rewrite"/>
+        </Root>
+    </Loggers>
+</Configuration>
