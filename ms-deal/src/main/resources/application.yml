@@ -1,7 +1,7 @@
 server:
   error:
     include-stacktrace: always
-  port: 8082
+  port: ${SERVER_PORT}
 
 spring:
   jpa:
@@ -14,47 +14,47 @@ spring:
       repositories:
         enabled: true
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/postgres?currentSchema=public
-    username: postgres
-    password: postgres
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
     database-change-log-table: changelog
     database-change-log-lock-table: changeloglock
-    default-schema: public
-    liquibase-schema: public
-    user: postgres
-    password: postgres
+    default-schema: ${DATASOURCE_SCHEMA}
+    liquibase-schema: ${DATASOURCE_LIQUIBASE_SCHEMA}
+    user: ${LIQUIBASE_USERNAME}
+    password: ${LIQUIBASE_PASSWORD}
   kafka:
     producer:
-      bootstrap-servers: 127.0.0.1:29092
-      client-id: deal
+      bootstrap-servers: ${KAFKA_URL}
+      client-id: ${KAFKA_CLIENT_ID}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 kafka:
   topic:
-    finish-registration: finish-registration
-    create-documents: create-documents
-    send-documents: send-documents
-    send-ses: send-ses
-    credit-issued: credit-issued
-    application-denied: application-denied
+    finish-registration: ${KAFKA_TOPIC_FINISH_REGISTRATION}
+    create-documents: ${KAFKA_TOPIC_CREATE_DOCUMENTS}
+    send-documents: ${KAFKA_TOPIC_SEND_DOCUMENTS}
+    send-ses: ${KAFKA_TOPIC_SEND_SES}
+    credit-issued: ${KAFKA_TOPIC_CREDIT_ISSUED}
+    application-denied: ${KAFKA_TOPIC_APPLICATION_DENIED}
 
 feign:
   client:
     config:
       default:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: full
+        connectTimeout: ${FEIGN_CONNECT_TIMEOUT}
+        readTimeout: ${FEIGN_READ_TIMEOUT}
+        loggerLevel: ${FEIGN_LOG_LEVEL}
 
 logging:
   level:
-    ru.neoflex.deal: DEBUG
-    ru.neoflex.deal.feign: DEBUG
+    ru.neoflex.deal: ${LOG_LEVEL}
+    ru.neoflex.deal.feign: ${LOG_LEVEL}
 
 application:
   url:
-    conveyor: http://localhost:8080
+    conveyor: ${CONVEYOR_URL}

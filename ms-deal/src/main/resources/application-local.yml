@@ -1,0 +1,60 @@
+server:
+  error:
+    include-stacktrace: always
+  port: 8082
+
+spring:
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+  data:
+    jpa:
+      repositories:
+        enabled: true
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/postgres?currentSchema=public
+    username: postgres
+    password: postgres
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    database-change-log-table: changelog
+    database-change-log-lock-table: changeloglock
+    default-schema: public
+    liquibase-schema: public
+    user: postgres
+    password: postgres
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:29092
+      client-id: deal
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+kafka:
+  topic:
+    finish-registration: finish-registration
+    create-documents: create-documents
+    send-documents: send-documents
+    send-ses: send-ses
+    credit-issued: credit-issued
+    application-denied: application-denied
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+
+logging:
+  level:
+    ru.neoflex.deal: DEBUG
+    ru.neoflex.deal.feign: DEBUG
+
+application:
+  url:
+    conveyor: http://localhost:8080

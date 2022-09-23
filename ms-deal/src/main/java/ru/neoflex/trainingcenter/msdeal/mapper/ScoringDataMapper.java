@@ -1,8 +1,11 @@
 package ru.neoflex.trainingcenter.msdeal.mapper;
 
+import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValueCheckStrategy;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import ru.neoflex.trainingcenter.msdeal.model.dto.FinishRegistrationRequestDto;
 import ru.neoflex.trainingcenter.msdeal.model.dto.LoanOfferDto;
 import ru.neoflex.trainingcenter.msdeal.model.dto.ScoringDataDto;
@@ -18,11 +21,17 @@ public interface ScoringDataMapper {
 
     @Mapping(target = "passportSeries", source = "series")
     @Mapping(target = "passportNumber", source = "number")
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
     void update(@MappingTarget ScoringDataDto scoringDataDto, Passport passport);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
     void update(@MappingTarget ScoringDataDto scoringDataDto, FinishRegistrationRequestDto finishRegistrationRequestDto);
 
     @Mapping(target = "amount", source = "requestAmount")
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
     void update(@MappingTarget ScoringDataDto scoringDataDto, LoanOfferDto loanOfferDto);
 
     default ScoringDataDto createScoringDataDto(Application application,
