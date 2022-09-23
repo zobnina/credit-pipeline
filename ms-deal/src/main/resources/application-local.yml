@@ -14,18 +14,18 @@ spring:
       repositories:
         enabled: true
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/postgres?currentSchema=public
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://127.0.0.1:5432/ms_deal?currentSchema=ms_deal
+    username: ms_deal_svc
+    password: ms_deal_svc
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
     database-change-log-table: changelog
     database-change-log-lock-table: changeloglock
-    default-schema: public
-    liquibase-schema: public
-    user: postgres
-    password: postgres
+    default-schema: ms_deal
+    liquibase-schema: ms_deal_liquibase
+    user: ms_deal_admin
+    password: ms_deal_admin
   kafka:
     producer:
       bootstrap-servers: 127.0.0.1:29092

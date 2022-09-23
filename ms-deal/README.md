@@ -21,7 +21,6 @@
 
 ## ToDo
 
-- [ ] db init sql script
 - [ ] postman collection, jmeter test
 - [ ] props to variables
 - [ ] docker
@@ -39,6 +38,7 @@
 
 ### v0.0.3
 
+- init sql script
 - masking
 
 ### v0.0.2
