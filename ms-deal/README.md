@@ -21,7 +21,7 @@
 
 ## ToDo
 
-- [ ] postman collection, jmeter test
+- [ ] jmeter test
 - [ ] props to variables
 - [ ] docker
 - [ ] docker-compose

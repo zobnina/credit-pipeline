@@ -451,6 +451,223 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "deal",
+			"item": [
+				{
+					"name": "200_application",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.variables.set('amount', 10000)\r",
+									"pm.variables.set('term', 6);\r",
+									"pm.variables.set('birthdate', '1997-10-18')\r",
+									"pm.variables.set('passportSeries', '1234')\r",
+									"pm.variables.set('passportNumber', '567890')"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Deal: Application #1. StatusCode\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deal: Application #1. Length\", function () {\r",
+									"    pm.expect(data.length).to.equal(4);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Deal: Application #1. Fields\", function () {\r",
+									"    data.forEach(function(row){\r",
+									"        pm.expect(row.hasOwnProperty(\"applicationId\")).to.be.true\r",
+									"        pm.expect(row.hasOwnProperty(\"requestAmount\")).to.be.true\r",
+									"        pm.expect(row.hasOwnProperty(\"totalAmount\")).to.be.true\r",
+									"        pm.expect(row.hasOwnProperty(\"term\")).to.be.true\r",
+									"        pm.expect(row.hasOwnProperty(\"monthlyPayment\")).to.be.true\r",
+									"        pm.expect(row.hasOwnProperty(\"rate\")).to.be.true\r",
+									"        pm.expect(row.hasOwnProperty(\"isInsuranceEnabled\")).to.be.true\r",
+									"        pm.expect(row.hasOwnProperty(\"isSalaryClient\")).to.be.true\r",
+									"\r",
+									"    })\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": {{amount}},\r\n    \"term\": {{term}},\r\n    \"firstName\": \"{{$randomFirstName}}\",\r\n    \"lastName\": \"{{$randomLastName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"birthdate\": \"{{birthdate}}\",\r\n    \"passportSeries\": \"{{passportSeries}}\",\r\n    \"passportNumber\": \"{{passportNumber}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dealHost}}/deal/application",
+							"host": [
+								"{{dealHost}}"
+							],
+							"path": [
+								"deal",
+								"application"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "200_offer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.variables.set('amount', 10000)\r",
+									"pm.variables.set('term', 6)\r",
+									"pm.variables.set('birthdate', '1997-10-18')\r",
+									"pm.variables.set('passportSeries', '1234')\r",
+									"pm.variables.set('passportNumber', '567890')\r",
+									"pm.variables.replaceIn('{{$randomFirstName}}')\r",
+									"pm.variables.replaceIn('{{$randomLastName}}')\r",
+									"pm.variables.replaceIn('{{$randomEmail}}')\r",
+									"pm.variables.replaceIn('{{$randomBoolean}}');"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Deal: Offer #1. StatusCode\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"applicationId\": \"d986cef8-7b12-4625-a782-45f3f17a7795\",\r\n    \"requestAmount\": {{amount}},\r\n    \"totalAmount\": 10431.00000,\r\n    \"term\": {{term}},\r\n    \"monthlyPayment\": 1738.50000,\r\n    \"rate\": 14.60500,\r\n    \"isInsuranceEnabled\": false,\r\n    \"isSalaryClient\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dealHost}}/deal/offer",
+							"host": [
+								"{{dealHost}}"
+							],
+							"path": [
+								"deal",
+								"offer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "200_calculate",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.variables.set('amount', 10000)\r",
+									"pm.variables.set('term', 6);\r",
+									"pm.variables.set('birthdate', '1997-10-18')\r",
+									"pm.variables.set('passportSeries', '1234')\r",
+									"pm.variables.set('passportNumber', '567890')\r",
+									"pm.variables.set('gender','FEMALE')\r",
+									"pm.variables.set('maritalStatus', 'MARRIED')\r",
+									"pm.variables.set('dependentAmount', 1)\r",
+									"pm.variables.set('employmentStatus', 'EMPLOYED')\r",
+									"pm.variables.set('salary', 75000)\r",
+									"pm.variables.set('position', 'WORKER')\r",
+									"pm.variables.set('workExperienceTotal', 36)\r",
+									"pm.variables.set('workExperienceCurrent', 6)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Deal: Calculate #1. StatusCode\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": {{amount}},\r\n    \"term\": {{term}},\r\n    \"firstName\": \"{{$randomFirstName}}\",\r\n    \"lastName\": \"{{$randomLastName}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"birthdate\": \"{{birthdate}}\",\r\n    \"passportSeries\": \"{{passportSeries}}\",\r\n    \"passportIssueBranch\": \"{{$randomStreetAddress}}\",\r\n    \"passportIssueDate\": \"2020-10-10\",\r\n    \"passportNumber\": \"{{passportNumber}}\",\r\n    \"maritalStatus\": \"{{maritalStatus}}\",\r\n    \"dependentAmount\": {{dependentAmount}},\r\n    \"employment\": {\r\n        \"employmentStatus\": \"{{employmentStatus}}\",\r\n        \"salary\": {{salary}},\r\n        \"position\": \"{{position}}\",\r\n        \"workExperienceTotal\": {{workExperienceTotal}},\r\n        \"workExperienceCurrent\": {{workExperienceCurrent}}\r\n    },\r\n    \"isInsuranceEnabled\": {{$randomBoolean}},\r\n    \"isSalaryClient\": {{$randomBoolean}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dealHost}}/deal/calculate/d986cef8-7b12-4625-a782-45f3f17a7795",
+							"host": [
+								"{{dealHost}}"
+							],
+							"path": [
+								"deal",
+								"calculate",
+								"d986cef8-7b12-4625-a782-45f3f17a7795"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.variables.replaceIn('{{$randomStreetAddress}}');"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		}
 	],
 	"event": [
@@ -484,7 +701,7 @@
 		},
 		{
 			"key": "dealHost",
-			"value": "http://localhost:8081",
+			"value": "http://localhost:8082",
 			"type": "string"
 		},
 		{
