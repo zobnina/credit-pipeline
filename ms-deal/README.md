@@ -21,6 +21,7 @@
 
 ## ToDo
 
+- [ ] FeignErrorDecoder
 - [ ] jmeter test
 - [ ] docker-compose
 - [ ] kubernetes
