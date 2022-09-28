@@ -21,9 +21,8 @@
 
 ## ToDo
 
+- [ ] FeignErrorDecoder
 - [ ] jmeter test
-- [ ] props to variables
-- [ ] docker
 - [ ] docker-compose
 - [ ] kubernetes
 - [ ] helm
@@ -38,6 +37,8 @@
 
 ### v0.0.3
 
+- dockerfile
+- props to variables
 - init sql script
 - masking
 

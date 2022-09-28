@@ -141,7 +141,7 @@ spec:
                 configMapKeyRef:
                   key: SERVER_PORT
                   name: ms-conveyor-env
-          image: lexana/ms-conveyor-image:0.0.4
+          image: lexana/java-service:maven
           name: ms-conveyor
           ports:
             - containerPort: 8081
