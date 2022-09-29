@@ -2,17 +2,20 @@ version: "3.9"
 
 services:
   ms-conveyor:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: ms-conveyor
+    image: lexana/java-service:ms-conveyor
     container_name: ms-conveyor
     ports:
       - "${SERVER_PORT}:${SERVER_PORT}"
     env_file:
       - .env
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 150M
+    restart: on-failure
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - type: bind
+        source: ./prom_data/prometheus.yml
+        target: /etc/prometheus/prometheus.yml
