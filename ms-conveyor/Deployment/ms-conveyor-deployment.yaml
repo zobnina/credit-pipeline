@@ -145,5 +145,11 @@ spec:
           name: ms-conveyor
           ports:
             - containerPort: 8081
-          resources: { }
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+            limits:
+              memory: "150Mi"
+              cpu: "150m"
       restartPolicy: Always

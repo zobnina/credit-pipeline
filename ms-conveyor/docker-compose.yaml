@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
   ms-conveyor:
     build:
@@ -10,3 +11,8 @@ services:
       - "${SERVER_PORT}:${SERVER_PORT}"
     env_file:
       - .env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 150M
