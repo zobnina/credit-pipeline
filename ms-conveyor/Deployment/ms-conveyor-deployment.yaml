@@ -26,6 +26,28 @@ data:
   SERVER_INCLUDE_STACKTRACE: "always"
   SERVER_PORT: "8081"
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: default
+data:
+  prometheus.yml: |-
+    global:
+      scrape_interval: 15s
+
+    scrape_configs:
+      - job_name: 'prometheus'
+        scrape_interval: 5s
+        static_configs:
+          - targets: [ 'localhost:9090' ]
+
+      - job_name: 'ms-conveyor'
+        metrics_path: '/actuator/prometheus'
+        scrape_interval: 5s
+        static_configs:
+          - targets: [ 'ms-conveyor:8081' ]
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -44,6 +66,10 @@ spec:
       labels:
         io.kompose.service: ms-conveyor
     spec:
+      volumes:
+        - name: prometheus-config
+          configMap:
+            name: prometheus-config
       containers:
         - env:
             - name: APP_NAME
@@ -147,9 +173,25 @@ spec:
             - containerPort: 8081
           resources:
             requests:
-              memory: "100Mi"
-              cpu: "100m"
-            limits:
               memory: "150Mi"
               cpu: "150m"
+            limits:
+              memory: "175Mi"
+              cpu: "175m"
+
+        - name: prometheus
+          image: prom/prometheus
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - mountPath: /etc/prometheus/
+              name: prometheus-config
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "50m"
+            limits:
+              memory: "75Mi"
+              cpu: "75m"
+
       restartPolicy: Always
