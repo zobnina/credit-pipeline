@@ -38,8 +38,6 @@ kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-c
 - [ ] sonarqube
 - [ ] grafana
 - [ ] zipkin
-- [ ] audit ?
-- [ ] auth ?
 
 ## Config
 
