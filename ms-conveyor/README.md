@@ -30,12 +30,12 @@ kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-c
 - JUnit5, Faker
 - Postman, Jmeter
 - Docker, Kubernetes
+- Prometheus
 
 ## ToDo
 
 - [ ] helm
 - [ ] sonarqube
-- [ ] prometheus
 - [ ] grafana
 - [ ] zipkin
 - [ ] audit ?
@@ -65,6 +65,10 @@ kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-c
 | conveyor.insurance.salaryClientPercent   | CONVEYOR_INSURANCE_SALARY_CLIENT_PERCENT  | percent from loan amount to calculate insurance cost for salary-client | 0       |
 
 ## History
+
+### v0.1.0
+
+- add actuator
 
 ### v0.0.6
 
