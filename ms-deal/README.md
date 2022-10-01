@@ -18,6 +18,8 @@
 - JPA, Hibernate, PostgreSql, Liquibase
 - Swagger
 - JUnit5, Mockito, WireMock, TestContainers, Faker
+- Docker
+- Prometheus
 
 ## ToDo
 
@@ -26,13 +28,16 @@
 - [ ] kubernetes
 - [ ] helm
 - [ ] sonarqube
-- [ ] prometheus
 - [ ] grafana
 - [ ] zipkin
 - [ ] audit ?
 - [ ] auth ?
 
 ## History:
+
+### v0.1.0
+
+- add prometheus
 
 ### v0.0.3
 
