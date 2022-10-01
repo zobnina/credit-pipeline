@@ -48,6 +48,7 @@
 - Swagger
 - JUnit5, Mockito, WireMock, TestContainers, Faker
 - Docker
+- Prometheus
 
 ## Additional lib
 
