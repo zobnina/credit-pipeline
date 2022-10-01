@@ -23,7 +23,6 @@
 
 - [ ] FeignErrorDecoder
 - [ ] jmeter test
-- [ ] docker-compose
 - [ ] kubernetes
 - [ ] helm
 - [ ] sonarqube

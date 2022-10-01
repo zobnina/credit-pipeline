@@ -4,7 +4,6 @@
 
 - [X] ms-conveyor
 - [X] ms-deal
-- [ ] ms-application
 - [ ] ms-dossier
 - [ ] ms-business-flow
 - [ ] ms-audit
@@ -26,7 +25,6 @@
 - `POST`: <tt>/deal/document/{applicationId}/sign</tt> - Sign documents request
 - `POST`: <tt>/deal/document/{applicationId}/code</tt> - Sign documents
 
-
 ## Tech Stack
 
 ### ms-conveyor
@@ -38,6 +36,7 @@
 - JUnit5, Faker
 - Postman, Jmeter
 - Docker, Kubernetes
+- Prometheus
 
 ### ms-deal
 
@@ -48,6 +47,7 @@
 - JPA, Hibernate, PostgreSql, Liquibase
 - Swagger
 - JUnit5, Mockito, WireMock, TestContainers, Faker
+- Docker
 
 ## Additional lib
 
@@ -57,25 +57,23 @@
 
 - [ ] postman
     - [X] ms-conveyor
-    - [ ] ms-deal
-    - [ ] ms-application
+    - [X] ms-deal
 - [ ] jmeter
     - [X] ms-conveyor
     - [ ] ms-deal
-    - [ ] ms-application
 
 ## DevOps
 
 - [ ] docker
     - [X] ms-conveyor
-    - [ ] ms-deal
-    - [ ] ms-application
+    - [X] ms-deal
 - [ ] docker-compose
     - [X] ms-conveyor
-    - [ ] ms-deal
-    - [ ] ms-application
+    - [X] prometheus
+    - [X] ms-deal
+    - [X] postgres
+    - [X] kafka, zookeeper
 - [ ] kubernetes
-    - [X] ms-conveyor
+    - [X] ms-conveyor, prometheus
     - [ ] ms-deal
-    - [ ] ms-application
 - [ ] helm
