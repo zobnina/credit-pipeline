@@ -35,7 +35,7 @@
 - Swagger
 - JUnit5, Faker
 - Postman, Jmeter
-- Docker, Kubernetes
+- Docker-compose, Kubernetes
 - Prometheus
 
 ### ms-deal
@@ -47,7 +47,7 @@
 - JPA, Hibernate, PostgreSql, Liquibase
 - Swagger
 - JUnit5, Mockito, WireMock, TestContainers, Faker
-- Docker
+- Docker-compose, Kubernetes
 - Prometheus
 
 ## Additional lib
@@ -75,6 +75,9 @@
     - [X] postgres
     - [X] kafka, zookeeper
 - [ ] kubernetes
-    - [X] ms-conveyor, prometheus
-    - [ ] ms-deal
+    - [X] ms-conveyor
+    - [X] prometheus
+    - [X] ms-deal
+    - [X] postgres
+    - [X] kafka, zookeeper
 - [ ] helm

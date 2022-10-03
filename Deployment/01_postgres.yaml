@@ -2,8 +2,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    app: db-postgres-config-map
-  name: db-postgres-config-map
+    app: db-postgres-config
+  name: db-postgres-config
 data:
   POSTGRES_PASSWORD: "postgres"
   init.sql: |-
@@ -64,9 +64,9 @@ spec:
         app: db-postgres
     spec:
       volumes:
-        - name: db-postgres-config-map
+        - name: db-postgres-config
           configMap:
-            name: db-postgres-config-map
+            name: db-postgres-config
       containers:
         - name: db-postgres
           image: postgres:13.1
@@ -77,7 +77,14 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: POSTGRES_PASSWORD
-                  name: db-postgres-config-map
+                  name: db-postgres-config
           volumeMounts:
             - mountPath: /docker-entrypoint-initdb.d/
-              name: db-postgres-config-map
+              name: db-postgres-config
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "50m"
+            limits:
+              memory: "75Mi"
+              cpu: "75m"
