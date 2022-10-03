@@ -1,0 +1,167 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: ms-conveyor-config
+  name: ms-conveyor-config
+data:
+  APP_NAME: "ms-conveyor.jar"
+  CONVEYOR_AMOUNT_BIG: "2500000"
+  CONVEYOR_AMOUNT_MIDDLE: "500000"
+  CONVEYOR_INSURANCE_PERCENT: "3"
+  CONVEYOR_INSURANCE_SALARY_CLIENT_PERCENT: "0"
+  CONVEYOR_RATE_AMOUNT_BIG: "5"
+  CONVEYOR_RATE_AMOUNT_MIDDLE: "16"
+  CONVEYOR_RATE_AMOUNT_SMALL: "27"
+  CONVEYOR_RATE_BASE: "10"
+  CONVEYOR_RATE_INSURANCE: "10"
+  CONVEYOR_RATE_SALARY_CLIENT: "12"
+  CONVEYOR_RATE_TERM_BIG: "55"
+  CONVEYOR_RATE_TERM_MIDDLE: "35"
+  CONVEYOR_RATE_TERM_SMALL: "15"
+  CONVEYOR_TERM_BIG: "120"
+  CONVEYOR_TERM_MIDDLE: "60"
+  LOG_LEVEL: "debug"
+  SERVER_INCLUDE_STACKTRACE: "always"
+  SERVER_PORT: "8081"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ms-conveyor-service
+  name: ms-conveyor-service
+spec:
+  type: NodePort
+  ports:
+    - port: 8081
+      nodePort: 30185
+      targetPort: 8081
+  selector:
+    app: ms-conveyor
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ms-conveyor
+  name: ms-conveyor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-conveyor
+  strategy: { }
+  template:
+    metadata:
+      labels:
+        app: ms-conveyor
+    spec:
+      containers:
+        - env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_NAME
+                  name: ms-conveyor-config
+            - name: CONVEYOR_AMOUNT_BIG
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_AMOUNT_BIG
+                  name: ms-conveyor-config
+            - name: CONVEYOR_AMOUNT_MIDDLE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_AMOUNT_MIDDLE
+                  name: ms-conveyor-config
+            - name: CONVEYOR_INSURANCE_PERCENT
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_INSURANCE_PERCENT
+                  name: ms-conveyor-config
+            - name: CONVEYOR_INSURANCE_SALARY_CLIENT_PERCENT
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_INSURANCE_SALARY_CLIENT_PERCENT
+                  name: ms-conveyor-config
+            - name: CONVEYOR_RATE_AMOUNT_BIG
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_AMOUNT_BIG
+                  name: ms-conveyor-config
+            - name: CONVEYOR_RATE_AMOUNT_MIDDLE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_AMOUNT_MIDDLE
+                  name: ms-conveyor-config
+            - name: CONVEYOR_RATE_AMOUNT_SMALL
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_AMOUNT_SMALL
+                  name: ms-conveyor-config
+            - name: CONVEYOR_RATE_BASE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_BASE
+                  name: ms-conveyor-config
+            - name: CONVEYOR_RATE_INSURANCE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_INSURANCE
+                  name: ms-conveyor-config
+            - name: CONVEYOR_RATE_SALARY_CLIENT
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_SALARY_CLIENT
+                  name: ms-conveyor-config
+            - name: CONVEYOR_RATE_TERM_BIG
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_TERM_BIG
+                  name: ms-conveyor-config
+            - name: CONVEYOR_RATE_TERM_MIDDLE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_TERM_MIDDLE
+                  name: ms-conveyor-config
+            - name: CONVEYOR_RATE_TERM_SMALL
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_RATE_TERM_SMALL
+                  name: ms-conveyor-config
+            - name: CONVEYOR_TERM_BIG
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_TERM_BIG
+                  name: ms-conveyor-config
+            - name: CONVEYOR_TERM_MIDDLE
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_TERM_MIDDLE
+                  name: ms-conveyor-config
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  key: LOG_LEVEL
+                  name: ms-conveyor-config
+            - name: SERVER_INCLUDE_STACKTRACE
+              valueFrom:
+                configMapKeyRef:
+                  key: SERVER_INCLUDE_STACKTRACE
+                  name: ms-conveyor-config
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: SERVER_PORT
+                  name: ms-conveyor-config
+          image: lexana/java-service:ms-conveyor
+          name: ms-conveyor
+          ports:
+            - containerPort: 8081
+          resources:
+            requests:
+              memory: "175Mi"
+              cpu: "175m"
+            limits:
+              memory: "200Mi"
+              cpu: "200m"
