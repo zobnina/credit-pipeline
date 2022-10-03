@@ -2,9 +2,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    io.kompose.service: ms-conveyor
-  name: ms-conveyor-env
-  namespace: default
+    app: ms-conveyor-config
+  name: ms-conveyor-config
 data:
   APP_NAME: "ms-conveyor.jar"
   CONVEYOR_AMOUNT_BIG: "2500000"
@@ -27,171 +26,142 @@ data:
   SERVER_PORT: "8081"
 ---
 apiVersion: v1
-kind: ConfigMap
+kind: Service
 metadata:
-  name: prometheus-config
-  namespace: default
-data:
-  prometheus.yml: |-
-    global:
-      scrape_interval: 15s
-
-    scrape_configs:
-      - job_name: 'prometheus'
-        scrape_interval: 5s
-        static_configs:
-          - targets: [ 'localhost:9090' ]
-
-      - job_name: 'ms-conveyor'
-        metrics_path: '/actuator/prometheus'
-        scrape_interval: 5s
-        static_configs:
-          - targets: [ 'ms-conveyor:8081' ]
+  labels:
+    app: ms-conveyor-service
+  name: ms-conveyor-service
+spec:
+  type: NodePort
+  ports:
+    - port: 8081
+      nodePort: 30185
+      targetPort: 8081
+  selector:
+    app: ms-conveyor
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    io.kompose.service: ms-conveyor
-  name: ms-conveyor-deployment
-  namespace: default
+    app: ms-conveyor
+  name: ms-conveyor
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: ms-conveyor
+      app: ms-conveyor
   strategy: { }
   template:
     metadata:
       labels:
-        io.kompose.service: ms-conveyor
+        app: ms-conveyor
     spec:
-      volumes:
-        - name: prometheus-config
-          configMap:
-            name: prometheus-config
       containers:
         - env:
             - name: APP_NAME
               valueFrom:
                 configMapKeyRef:
                   key: APP_NAME
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_AMOUNT_BIG
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_AMOUNT_BIG
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_AMOUNT_MIDDLE
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_AMOUNT_MIDDLE
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_INSURANCE_PERCENT
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_INSURANCE_PERCENT
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_INSURANCE_SALARY_CLIENT_PERCENT
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_INSURANCE_SALARY_CLIENT_PERCENT
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_RATE_AMOUNT_BIG
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_RATE_AMOUNT_BIG
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_RATE_AMOUNT_MIDDLE
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_RATE_AMOUNT_MIDDLE
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_RATE_AMOUNT_SMALL
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_RATE_AMOUNT_SMALL
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_RATE_BASE
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_RATE_BASE
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_RATE_INSURANCE
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_RATE_INSURANCE
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_RATE_SALARY_CLIENT
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_RATE_SALARY_CLIENT
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_RATE_TERM_BIG
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_RATE_TERM_BIG
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_RATE_TERM_MIDDLE
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_RATE_TERM_MIDDLE
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_RATE_TERM_SMALL
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_RATE_TERM_SMALL
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_TERM_BIG
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_TERM_BIG
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: CONVEYOR_TERM_MIDDLE
               valueFrom:
                 configMapKeyRef:
                   key: CONVEYOR_TERM_MIDDLE
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: LOG_LEVEL
               valueFrom:
                 configMapKeyRef:
                   key: LOG_LEVEL
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: SERVER_INCLUDE_STACKTRACE
               valueFrom:
                 configMapKeyRef:
                   key: SERVER_INCLUDE_STACKTRACE
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
             - name: SERVER_PORT
               valueFrom:
                 configMapKeyRef:
                   key: SERVER_PORT
-                  name: ms-conveyor-env
+                  name: ms-conveyor-config
           image: lexana/java-service:ms-conveyor
           name: ms-conveyor
           ports:
             - containerPort: 8081
           resources:
             requests:
-              memory: "150Mi"
-              cpu: "150m"
-            limits:
               memory: "175Mi"
               cpu: "175m"
-
-        - name: prometheus
-          image: prom/prometheus
-          ports:
-            - containerPort: 9090
-          volumeMounts:
-            - mountPath: /etc/prometheus/
-              name: prometheus-config
-          resources:
-            requests:
-              memory: "50Mi"
-              cpu: "50m"
             limits:
-              memory: "75Mi"
-              cpu: "75m"
-
-      restartPolicy: Always
+              memory: "200Mi"
+              cpu: "200m"

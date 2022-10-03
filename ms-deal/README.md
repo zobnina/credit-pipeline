@@ -18,14 +18,13 @@
 - JPA, Hibernate, PostgreSql, Liquibase
 - Swagger
 - JUnit5, Mockito, WireMock, TestContainers, Faker
-- Docker
+- Docker, Kubernetes
 - Prometheus
 
 ## ToDo
 
 - [ ] FeignErrorDecoder
 - [ ] jmeter test
-- [ ] kubernetes
 - [ ] helm
 - [ ] sonarqube
 - [ ] grafana

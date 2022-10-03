@@ -1,0 +1,187 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: ms-deal-config
+  name: ms-deal-config
+data:
+  APP_NAME: "ms-deal-0.1.0.jar"
+  SERVER_PORT: "8082"
+  DATASOURCE_URL: "jdbc:postgresql://10.107.31.105:5432/ms_deal?currentSchema=ms_deal"
+  DATASOURCE_USERNAME: "ms_deal_user"
+  DATASOURCE_PASSWORD: "ms_deal_user"
+  DATASOURCE_SCHEMA: "ms_deal"
+  DATASOURCE_LIQUIBASE_SCHEMA: "ms_deal_liquibase"
+  LIQUIBASE_USERNAME: "ms_deal_admin"
+  LIQUIBASE_PASSWORD: "ms_deal_admin"
+  KAFKA_URL: "10.97.40.107:9092"
+  KAFKA_CLIENT_ID: "deal"
+  KAFKA_TOPIC_FINISH_REGISTRATION: "finish-registration"
+  KAFKA_TOPIC_CREATE_DOCUMENTS: "create-documents"
+  KAFKA_TOPIC_SEND_DOCUMENTS: "send-documents"
+  KAFKA_TOPIC_SEND_SES: "send-ses"
+  KAFKA_TOPIC_CREDIT_ISSUED: "credit-issued"
+  KAFKA_TOPIC_APPLICATION_DENIED: "application-denied"
+  FEIGN_CONNECT_TIMEOUT: "5000"
+  FEIGN_READ_TIMEOUT: "5000"
+  FEIGN_LOG_LEVEL: "full"
+  LOG_LEVEL: "DEBUG"
+  CONVEYOR_URL: "http://10.102.235.170:8081"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ms-deal-service
+  name: ms-deal-service
+spec:
+  type: NodePort
+  ports:
+    - port: 8082
+      nodePort: 30184
+      targetPort: 8082
+  selector:
+    app: ms-deal
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ms-deal
+  name: ms-deal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-deal
+  strategy: { }
+  template:
+    metadata:
+      labels:
+        app: ms-deal
+    spec:
+      containers:
+        - env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_NAME
+                  name: ms-deal-config
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: SERVER_PORT
+                  name: ms-deal-config
+            - name: DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: DATASOURCE_URL
+                  name: ms-deal-config
+            - name: DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: DATASOURCE_USERNAME
+                  name: ms-deal-config
+            - name: DATASOURCE_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: DATASOURCE_PASSWORD
+                  name: ms-deal-config
+            - name: DATASOURCE_SCHEMA
+              valueFrom:
+                configMapKeyRef:
+                  key: DATASOURCE_SCHEMA
+                  name: ms-deal-config
+            - name: DATASOURCE_LIQUIBASE_SCHEMA
+              valueFrom:
+                configMapKeyRef:
+                  key: DATASOURCE_LIQUIBASE_SCHEMA
+                  name: ms-deal-config
+            - name: LIQUIBASE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: LIQUIBASE_USERNAME
+                  name: ms-deal-config
+            - name: LIQUIBASE_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: LIQUIBASE_PASSWORD
+                  name: ms-deal-config
+            - name: KAFKA_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: KAFKA_URL
+                  name: ms-deal-config
+            - name: KAFKA_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: KAFKA_CLIENT_ID
+                  name: ms-deal-config
+            - name: KAFKA_TOPIC_FINISH_REGISTRATION
+              valueFrom:
+                configMapKeyRef:
+                  key: KAFKA_TOPIC_FINISH_REGISTRATION
+                  name: ms-deal-config
+            - name: KAFKA_TOPIC_CREATE_DOCUMENTS
+              valueFrom:
+                configMapKeyRef:
+                  key: KAFKA_TOPIC_CREATE_DOCUMENTS
+                  name: ms-deal-config
+            - name: KAFKA_TOPIC_SEND_DOCUMENTS
+              valueFrom:
+                configMapKeyRef:
+                  key: KAFKA_TOPIC_SEND_DOCUMENTS
+                  name: ms-deal-config
+            - name: KAFKA_TOPIC_SEND_SES
+              valueFrom:
+                configMapKeyRef:
+                  key: KAFKA_TOPIC_SEND_SES
+                  name: ms-deal-config
+            - name: KAFKA_TOPIC_CREDIT_ISSUED
+              valueFrom:
+                configMapKeyRef:
+                  key: KAFKA_TOPIC_CREDIT_ISSUED
+                  name: ms-deal-config
+            - name: KAFKA_TOPIC_APPLICATION_DENIED
+              valueFrom:
+                configMapKeyRef:
+                  key: KAFKA_TOPIC_APPLICATION_DENIED
+                  name: ms-deal-config
+            - name: FEIGN_CONNECT_TIMEOUT
+              valueFrom:
+                configMapKeyRef:
+                  key: FEIGN_CONNECT_TIMEOUT
+                  name: ms-deal-config
+            - name: FEIGN_READ_TIMEOUT
+              valueFrom:
+                configMapKeyRef:
+                  key: FEIGN_READ_TIMEOUT
+                  name: ms-deal-config
+            - name: FEIGN_LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  key: FEIGN_LOG_LEVEL
+                  name: ms-deal-config
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  key: LOG_LEVEL
+                  name: ms-deal-config
+            - name: CONVEYOR_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: CONVEYOR_URL
+                  name: ms-deal-config
+          image: lexana/java-service:ms-deal
+          name: ms-deal
+          ports:
+            - containerPort: 8082
+          resources:
+            requests:
+              memory: "275Mi"
+              cpu: "275m"
+            limits:
+              memory: "300Mi"
+              cpu: "300m"
+
+      restartPolicy: Always

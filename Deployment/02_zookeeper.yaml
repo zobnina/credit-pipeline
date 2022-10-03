@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: zookeeper-config
+  name: zookeeper-config
+data:
+  ALLOW_ANONYMOUS_LOGIN: "yes"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: zookeeper-service
+  name: zookeeper-service
+spec:
+  type: NodePort
+  ports:
+    - name: zookeeper-port
+      port: 2181
+      nodePort: 30181
+      targetPort: 2181
+  selector:
+    app: zookeeper
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: zookeeper
+  name: zookeeper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zookeeper
+  template:
+    metadata:
+      labels:
+        app: zookeeper
+    spec:
+      containers:
+        - image: bitnami/zookeeper:latest
+          imagePullPolicy: IfNotPresent
+          name: zookeeper
+          ports:
+            - containerPort: 2181
+          env:
+            - name: ALLOW_ANONYMOUS_LOGIN
+              valueFrom:
+                configMapKeyRef:
+                  key: ALLOW_ANONYMOUS_LOGIN
+                  name: zookeeper-config
+          resources:
+            requests:
+              memory: "150Mi"
+              cpu: "150m"
+            limits:
+              memory: "175Mi"
+              cpu: "175m"
