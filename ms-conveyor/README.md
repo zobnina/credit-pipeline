@@ -64,6 +64,10 @@ kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-c
 
 ## History
 
+### v0.1.1
+
+- add json body in error message
+
 ### v0.1.0
 
 - add actuator
