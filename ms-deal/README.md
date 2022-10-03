@@ -23,7 +23,6 @@
 
 ## ToDo
 
-- [ ] FeignErrorDecoder
 - [ ] jmeter test
 - [ ] helm
 - [ ] sonarqube
@@ -33,6 +32,10 @@
 - [ ] auth ?
 
 ## History:
+
+### v0.1.1
+
+- FeignErrorDecoder
 
 ### v0.1.0
 
