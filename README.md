@@ -9,6 +9,10 @@
 - [ ] ms-audit
 - [ ] ms-credit-pipeline-ui
 
+## Additional lib
+
+- https://github.com/zobnina/logging-lib
+
 ## Api
 
 ### ms-conveyor
@@ -29,30 +33,46 @@
 
 ### ms-conveyor
 
-- SpringBoot
-- Maven
+- SpringBoot, Maven
 - Lombok
 - Swagger
 - JUnit5, Faker
-- Postman, Jmeter
-- Docker-compose, Kubernetes
-- Prometheus
+- micrometer
 
 ### ms-deal
 
-- SpringBoot
+- SpringBoot, Gradle
 - Spring-Kafka, FeignClient
-- Gradle
 - Lombok, MapStruct
 - JPA, Hibernate, PostgreSql, Liquibase
 - Swagger
 - JUnit5, Mockito, WireMock, TestContainers, Faker
-- Docker-compose, Kubernetes
-- Prometheus
+- micrometer
 
-## Additional lib
+## DevOps
 
-- https://github.com/zobnina/logging-lib
+- [ ] docker
+    - [X] ms-conveyor
+    - [X] ms-deal
+    - [ ] ms-dossier
+    - [ ] ms-business-flow
+- [ ] docker-compose
+    - [X] ms-conveyor
+    - [X] prometheus
+    - [X] ms-deal
+    - [X] postgres
+    - [X] kafka, zookeeper
+    - [ ] ms-dossier
+    - [ ] ms-business-flow
+- [ ] kubernetes
+    - [X] ms-conveyor
+    - [X] prometheus
+    - [X] ms-deal
+    - [X] postgres
+    - [X] kafka, zookeeper
+    - [ ] ms-dossier
+    - [ ] ms-business-flow
+- [ ] helm
 
 ## Testing
 
@@ -62,22 +82,3 @@
 - [ ] jmeter
     - [X] ms-conveyor
     - [ ] ms-deal
-
-## DevOps
-
-- [ ] docker
-    - [X] ms-conveyor
-    - [X] ms-deal
-- [ ] docker-compose
-    - [X] ms-conveyor
-    - [X] prometheus
-    - [X] ms-deal
-    - [X] postgres
-    - [X] kafka, zookeeper
-- [ ] kubernetes
-    - [X] ms-conveyor
-    - [X] prometheus
-    - [X] ms-deal
-    - [X] postgres
-    - [X] kafka, zookeeper
-- [ ] helm
