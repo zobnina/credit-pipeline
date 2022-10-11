@@ -35,6 +35,18 @@ GRANT USAGE ON SCHEMA ms_deal_liquibase TO ms_deal_test;
 
 ALTER DATABASE ms_deal set search_path TO 'ms_deal';
 
+-- Создание пользователя для sonar
+CREATE USER sonar NOSUPERUSER NOCREATEDB NOCREATEROLE PASSWORD 'sonar';
+
+-- Создание БД для sonar
+CREATE DATABASE sonar OWNER sonar ENCODING 'UTF8' CONNECTION LIMIT 100;
+
+-- Установление соединения sonar
+\c sonar
+
+-- Создание схем для sonar
+CREATE SCHEMA sonar AUTHORIZATION sonar;
+
 
 
 
