@@ -64,6 +64,10 @@ kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-c
 
 ## History
 
+### 0.1.2
+
+- add sonarqube
+
 ### v0.1.1
 
 - add json body in error message

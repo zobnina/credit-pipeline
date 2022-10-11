@@ -10,7 +10,7 @@
     </parent>
     <groupId>ru.neoflex.trainingcenter</groupId>
     <artifactId>ms-conveyor</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <name>ms-conveyor</name>
     <description>ms-conveyor</description>
     <properties>
@@ -20,6 +20,8 @@
         <log4j2.version>2.18.0</log4j2.version>
         <lib-log.version>0.0.1</lib-log.version>
         <lib-log-web.version>0.0.1</lib-log-web.version>
+        <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -100,7 +102,30 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-
 </project>
