@@ -2,6 +2,7 @@ package ru.neoflex.trainingcenter.msdeal.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 import ru.neoflex.trainingcenter.msdeal.model.dto.LoanApplicationRequestDto;
 import ru.neoflex.trainingcenter.msdeal.model.entity.Client;
 import ru.neoflex.trainingcenter.msdeal.model.entity.Passport;
@@ -9,15 +10,20 @@ import ru.neoflex.trainingcenter.msdeal.model.entity.Passport;
 @Mapper(componentModel = "spring")
 public interface ClientMapper {
 
-    @Mapping(target = "birthDate", source = "birthdate")
-    Client loanApplicationRequestDtoToClient(LoanApplicationRequestDto loanApplicationRequestDto);
+    ClientMapper MAPPER = Mappers.getMapper(ClientMapper.class);
 
-    default Client createClient(LoanApplicationRequestDto loanApplicationRequestDto,
-                                Passport passport) {
-
-        Client client = loanApplicationRequestDtoToClient(loanApplicationRequestDto);
-        client.setPassport(passport);
-
-        return client;
-    }
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "gender", ignore = true)
+    @Mapping(target = "maritalStatus", ignore = true)
+    @Mapping(target = "dependentAmount", ignore = true)
+    @Mapping(target = "employment", ignore = true)
+    @Mapping(target = "account", ignore = true)
+    @Mapping(target = "applications", ignore = true)
+    @Mapping(target = "birthDate", source = "loanApplicationRequestDto.birthdate")
+    @Mapping(target = "firstName", source = "loanApplicationRequestDto.firstName")
+    @Mapping(target = "lastName", source = "loanApplicationRequestDto.lastName")
+    @Mapping(target = "middleName", source = "loanApplicationRequestDto.middleName")
+    @Mapping(target = "email", source = "loanApplicationRequestDto.email")
+    @Mapping(target = "passport", source = "passport")
+    Client createClient(LoanApplicationRequestDto loanApplicationRequestDto, Passport passport);
 }

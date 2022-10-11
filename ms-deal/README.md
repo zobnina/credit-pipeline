@@ -33,6 +33,10 @@
 
 ## History:
 
+### 0.1.2:
+
+- исправлены warnings от mapstruct
+
 ### v0.1.1
 
 - FeignErrorDecoder

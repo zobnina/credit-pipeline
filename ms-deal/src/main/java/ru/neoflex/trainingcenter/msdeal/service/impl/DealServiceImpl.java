@@ -40,19 +40,13 @@ public class DealServiceImpl implements DealService {
     private final ApplicationRepository applicationRepository;
     private final ConveyorFeignClient conveyorFeignClient;
     private final EmailMessageProducer emailMessageProducer;
-    private final ApplicationMapper applicationMapper;
-    private final ApplicationStatusHistoryMapper applicationStatusHistoryMapper;
-    private final ClientMapper clientMapper;
-    private final CreditMapper creditMapper;
-    private final PassportMapper passportMapper;
-    private final ScoringDataMapper scoringDataMapper;
 
     @Override
     public List<LoanOfferDto> application(LoanApplicationRequestDto loanApplicationRequestDto) {
 
-        final Passport passport = passportMapper.loanApplicationRequestDtoToPassport(loanApplicationRequestDto);
-        final Client client = clientMapper.createClient(loanApplicationRequestDto, passport);
-        final Application application = applicationRepository.save(applicationMapper.createApplication(client));
+        final Passport passport = PassportMapper.MAPPER.loanApplicationRequestDtoToPassport(loanApplicationRequestDto);
+        final Client client = ClientMapper.MAPPER.createClient(loanApplicationRequestDto, passport);
+        final Application application = applicationRepository.save(ApplicationMapper.MAPPER.createApplication(client));
         final List<LoanOfferDto> loanOfferDtos = conveyorFeignClient.postOffers(loanApplicationRequestDto);
         loanOfferDtos.forEach(loanOfferDto -> loanOfferDto.setApplicationId(application.getId()));
 
@@ -67,7 +61,7 @@ public class DealServiceImpl implements DealService {
         application.setStatus(ApplicationStatus.APPROVED);
         application.setAppliedOffer(loanOfferDto);
         final List<ApplicationStatusHistory> histories =
-                applicationStatusHistoryMapper.applicationStatusHistories(application);
+                ApplicationStatusHistoryMapper.MAPPER.applicationStatusHistories(application);
         application.setStatusHistory(histories);
         applicationRepository.save(application);
         emailMessageProducer.finishRegistration(application.getId(), application.getClient().getEmail());
@@ -79,11 +73,11 @@ public class DealServiceImpl implements DealService {
 
         final Application application = applicationRepository.findById(applicationId)
                 .orElseThrow(() -> new EntityNotFoundException(APPLICATION));
-        final ScoringDataDto scoringDataDto = scoringDataMapper.createScoringDataDto(
+        final ScoringDataDto scoringDataDto = ScoringDataMapper.MAPPER.createScoringDataDto(
                 application, finishRegistrationRequestDto);
         CreditDto creditDto = conveyorFeignClient.postCalculation(scoringDataDto);
-        final Credit credit = creditMapper.creditDtoToCredit(creditDto);
-        application.setStatusHistory(applicationStatusHistoryMapper.applicationStatusHistories(application));
+        final Credit credit = CreditMapper.MAPPER.creditDtoToCredit(creditDto);
+        application.setStatusHistory(ApplicationStatusHistoryMapper.MAPPER.applicationStatusHistories(application));
         application.setStatus(ApplicationStatus.CC_APPROVED);
         application.setCredit(credit);
         applicationRepository.save(application);
