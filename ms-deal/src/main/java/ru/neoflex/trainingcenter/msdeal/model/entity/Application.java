@@ -13,6 +13,7 @@ import ru.neoflex.trainingcenter.msdeal.type.ListType;
 import ru.neoflex.trainingcenter.msdeal.type.LoanOfferType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -31,7 +32,7 @@ import java.util.UUID;
         @TypeDef(name = "LoanOfferType", typeClass = LoanOfferType.class, defaultForType = LoanOfferDto.class)})
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Application {
+public class Application implements Serializable {
 
     @Id
     @GeneratedValue

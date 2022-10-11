@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
@@ -30,7 +31,7 @@ import java.util.UUID;
 @TypeDef(name = "ListType", typeClass = ListType.class, defaultForType = List.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Credit {
+public class Credit implements Serializable {
 
     @Id
     @GeneratedValue
