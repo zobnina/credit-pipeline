@@ -30,12 +30,11 @@ kubectl expose deployment ms-conveyor-deployment --type=LoadBalancer --name=ms-c
 - JUnit5, Faker
 - Postman, Jmeter
 - Docker, Kubernetes
-- Prometheus
+- Prometheus, SonarQube
 
 ## ToDo
 
 - [ ] helm
-- [ ] sonarqube
 - [ ] grafana
 - [ ] zipkin
 

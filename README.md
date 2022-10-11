@@ -6,12 +6,12 @@
 - [X] ms-deal
 - [ ] ms-dossier
 - [ ] ms-business-flow
-- [ ] ms-audit
-- [ ] ms-credit-pipeline-ui
 
-## Additional lib
+## Additional libs and services
 
 - https://github.com/zobnina/logging-lib
+- [ ] ms-audit
+- [ ] ms-credit-pipeline-ui
 
 ## Api
 
@@ -37,7 +37,9 @@
 - Lombok
 - Swagger
 - JUnit5, Faker
-- micrometer
+- Postman, Jmeter
+- Docker, Kubernetes
+- Prometheus, SonarQube
 
 ### ms-deal
 
@@ -47,7 +49,7 @@
 - JPA, Hibernate, PostgreSql, Liquibase
 - Swagger
 - JUnit5, Mockito, WireMock, TestContainers, Faker
-- micrometer
+- Prometheus, Micrometer
 
 ## DevOps
 
@@ -62,6 +64,7 @@
     - [X] ms-deal
     - [X] postgres
     - [X] kafka, zookeeper
+    - [X] sonarqube
     - [ ] ms-dossier
     - [ ] ms-business-flow
 - [ ] kubernetes
@@ -70,6 +73,7 @@
     - [X] ms-deal
     - [X] postgres
     - [X] kafka, zookeeper
+    - [ ] sonarqube
     - [ ] ms-dossier
     - [ ] ms-business-flow
 - [ ] helm
