@@ -2,14 +2,16 @@
 
 ## Services
 
-- [X] ms-conveyor
-- [X] ms-deal
+- [X] [ms-conveyor](https://github.com/zobnina/credit-pipeline/tree/develop/ms-conveyor)
+- [X] [ms-deal](https://github.com/zobnina/credit-pipeline/tree/develop/ms-deal)
+- [ ] ms-document
 - [ ] ms-dossier
 - [ ] ms-business-flow
 
 ## Additional libs and services
 
-- https://github.com/zobnina/logging-lib
+- [logging-libs](https://github.com/zobnina/logging-lib)
+- [ ] ms-auth
 - [ ] ms-audit
 - [ ] ms-credit-pipeline-ui
 
@@ -35,10 +37,9 @@
 
 - SpringBoot, Maven
 - Lombok
-- Swagger
+- Swagger (springdoc)
 - JUnit5, Faker
 - Postman, Jmeter
-- Docker, Kubernetes
 - Prometheus, SonarQube
 
 ### ms-deal
@@ -47,13 +48,18 @@
 - Spring-Kafka, FeignClient
 - Lombok, MapStruct
 - JPA, Hibernate, PostgreSql, Liquibase
-- Swagger
+- Swagger (springdoc)
 - JUnit5, Mockito, WireMock, TestContainers, Faker
 - Prometheus, Micrometer
 
+#### ToDo
+
+- [ ] move /document to separate service
+- [ ] add scheduler with custom metrics
+
 ## DevOps
 
-[deployment project link](https://github.com/zobnina/deployment): `https://github.com/zobnina/deployment`
+[deployment link](https://github.com/zobnina/deployment): `https://github.com/zobnina/deployment`
 
 - [ ] docker
     - [X] ms-conveyor
@@ -88,3 +94,7 @@
 - [ ] jmeter
     - [X] ms-conveyor
     - [ ] ms-deal
+
+### ToDo
+
+- [ ] move testing files to separate project
