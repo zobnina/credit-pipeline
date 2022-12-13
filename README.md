@@ -53,6 +53,8 @@
 
 ## DevOps
 
+[deployment project link](https://github.com/zobnina/deployment): `https://github.com/zobnina/deployment`
+
 - [ ] docker
     - [X] ms-conveyor
     - [X] ms-deal
